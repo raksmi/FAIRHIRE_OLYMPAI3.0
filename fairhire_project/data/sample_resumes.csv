@@ -1,0 +1,444 @@
+name,email,category,gender,resume_text
+Sneha Pillai,sneha.pillai35@example.com,Cybersecurity,female,"Sneha Pillai
+Email: sneha.pillai35@example.com | Phone: 9306785808
+Location: Pune
+Gender: Female
+Summary: Sneha is a motivated professional. She has 3 years of experience in bash, cryptography, firewalls. Her projects focus on reliable, well-tested solutions.
+Skills: bash, cryptography, firewalls, linux, node.js, siem, vulnerability assessment, wireshark
+Experience: 3 years of experience. Worked at Lumen Software (2012-2015) using bash, cryptography, firewalls, linux.
+Education: Master of Science in Computer Science, VIT University, graduated 2011."
+Ananya Iyer,ananya.iyer40@example.com,Cybersecurity,female,"Ananya Iyer
+Email: ananya.iyer40@example.com | Phone: 9888699799
+Location: Pune
+Summary: Ananya is a motivated professional. She has 1 years of experience in bash, cryptography, incident response. Her projects focus on reliable, well-tested solutions.
+Skills: bash, cryptography, incident response, network security, python, react, siem, sql, wireshark
+Experience: 1 years of experience. Worked at Zenith Labs (2010-2011) using bash, cryptography, incident response, network security.
+Education: M.Sc in Computer Science, Anna University, graduated 2009."
+Aditya Menon,aditya.menon17@example.com,Web Development,male,"Aditya Menon
+Email: aditya.menon17@example.com | Phone: 9220123666
+Location: Bengaluru
+Summary: Aditya is a motivated professional. He has 6 years of experience in css, git, html. His projects focus on reliable, well-tested solutions.
+Skills: css, git, html, monitoring, rest api
+Experience: 6 years of experience. Worked at BrightPath Tech (2026-2032) using css, git, html, monitoring.
+Education: B.Tech in Computer Science, BITS Pilani, graduated 2025."
+Emily Verma,emily.verma60@example.com,DevOps,female,"Emily Verma
+Email: emily.verma60@example.com | Phone: 9197951867
+Location: Bengaluru
+Gender: Female
+Summary: Emily is a motivated professional. She has 2 years of experience in aws, bash, ci/cd. Her projects focus on reliable, well-tested solutions.
+Skills: aws, bash, ci/cd, css, docker, git, linux, monitoring, node.js, terraform
+Experience: 2 years of experience. Worked at Zenith Labs (2024-2026) using aws, bash, ci/cd, css.
+Education: B.Tech in Computer Science, Delhi University, graduated 2023."
+Emily Menon,emily.menon13@example.com,Data Science,female,"Emily Menon
+Email: emily.menon13@example.com | Phone: 9727255918
+Location: Dubai
+Summary: Emily is a motivated professional. She has 5 years of experience in data visualization, javascript, machine learning. Her projects focus on reliable, well-tested solutions.
+Skills: data visualization, javascript, machine learning, nlp, numpy, pandas, python, rest api, scikit-learn, statistics
+Experience: 5 years of experience. Worked at Lumen Software (2010-2015) using data visualization, javascript, machine learning, nlp.
+Education: B.Tech in Computer Science, IIT Madras, graduated 2009."
+Karthik Verma,karthik.verma2@example.com,Data Science,male,"Karthik Verma
+Email: karthik.verma2@example.com | Phone: 9485451171
+Location: Pune
+Summary: Karthik is a motivated professional. He has 1 years of experience in html, machine learning, pandas. His projects focus on reliable, well-tested solutions.
+Skills: html, machine learning, pandas, python, scikit-learn, sql, statistics
+Experience: 1 years of experience. Worked at Zenith Labs (2021-2022) using html, machine learning, pandas, python.
+Education: B.Tech in Computer Science, Delhi University, graduated 2020."
+Nisha Pillai,nisha.pillai32@example.com,Cybersecurity,female,"Nisha Pillai
+Email: nisha.pillai32@example.com | Phone: 9887906704
+Location: Toronto
+Summary: Nisha is a motivated professional. She has 2 years of experience in firewalls, incident response, linux. Her projects focus on reliable, well-tested solutions.
+Skills: firewalls, incident response, linux, network security, penetration testing, python, siem, sql, vulnerability assessment, wireshark
+Experience: 2 years of experience. Worked at Northwind Systems (2022-2024) using firewalls, incident response, linux, network security.
+Education: B.Sc in Computer Science, BITS Pilani, graduated 2021."
+Olivia Verma,olivia.verma54@example.com,DevOps,female,"Olivia Verma
+Email: olivia.verma54@example.com | Phone: 9587096273
+Location: Pune
+Summary: Olivia is a motivated professional. She has 8 years of experience in aws, bash, ci/cd. Her projects focus on reliable, well-tested solutions.
+Skills: aws, bash, ci/cd, docker, git, kubernetes, monitoring, terraform
+Experience: 8 years of experience. Worked at Lumen Software (2013-2021) using aws, bash, ci/cd, docker.
+Education: M.Sc in Computer Science, NIT Trichy, graduated 2012."
+Olivia Bose,olivia.bose16@example.com,Web Development,female,"Olivia Bose
+Email: olivia.bose16@example.com | Phone: 9624557080
+Location: Hyderabad
+Summary: Olivia is a motivated professional. She has 3 years of experience in cryptography, css, firewalls. Her projects focus on reliable, well-tested solutions.
+Skills: cryptography, css, firewalls, flask, html, javascript, mongodb, node.js, sql
+Experience: 3 years of experience. Worked at Zenith Labs (2017-2020) using cryptography, css, firewalls, flask.
+Education: Bachelor of Engineering in Computer Science, Anna University, graduated 2016."
+Karthik Khan,karthik.khan11@example.com,Data Science,male,"Karthik Khan
+Email: karthik.khan11@example.com | Phone: 9366992705
+Location: Delhi
+Gender: Male
+Summary: Karthik is a motivated professional. He has 6 years of experience in docker, kubernetes, machine learning. His projects focus on reliable, well-tested solutions.
+Skills: docker, kubernetes, machine learning, pandas, scikit-learn, statistics, tensorflow
+Experience: 6 years of experience. Worked at Orbit Analytics (2019-2025) using docker, kubernetes, machine learning, pandas.
+Education: B.Tech in Computer Science, IIT Madras, graduated 2018."
+Meera Mehta,meera.mehta6@example.com,Data Science,female,"Meera Mehta
+Email: meera.mehta6@example.com | Phone: 9369953851
+Location: Toronto
+Summary: Meera is a motivated professional. She has 9 years of experience in data visualization, deep learning, git. Her projects focus on reliable, well-tested solutions.
+Skills: data visualization, deep learning, git, numpy, python, pytorch, sql, statistics
+Experience: 9 years of experience. Worked at Zenith Labs (2023-2032) using data visualization, deep learning, git, numpy.
+Education: Bachelor of Engineering in Computer Science, Delhi University, graduated 2022."
+Nikhil Das,nikhil.das51@example.com,DevOps,male,"Nikhil Das
+Email: nikhil.das51@example.com | Phone: 9491766764
+Location: Mumbai
+Gender: Male
+Summary: Nikhil is a motivated professional. He has 7 years of experience in aws, bash, ci/cd. His projects focus on reliable, well-tested solutions.
+Skills: aws, bash, ci/cd, git, kubernetes, linux, monitoring, network security, python, siem
+Experience: 7 years of experience. Worked at Northwind Systems (2010-2017) using aws, bash, ci/cd, git.
+Education: Bachelor of Engineering in Computer Science, University of Mumbai, graduated 2009."
+Rohan Reddy,rohan.reddy30@example.com,Web Development,male,"Rohan Reddy
+Email: rohan.reddy30@example.com | Phone: 9235528741
+Location: Dubai
+Summary: Rohan is a motivated professional. He has 0 years of experience in css, html, javascript. His projects focus on reliable, well-tested solutions.
+Skills: css, html, javascript, node.js, sql
+Experience: 0 years of experience. Worked at Lumen Software (2013-2014) using css, html, javascript, node.js.
+Education: B.Sc in Computer Science, IIT Madras, graduated 2012."
+Kavya Pillai,kavya.pillai5@example.com,Data Science,female,"Kavya Pillai
+Email: kavya.pillai5@example.com | Phone: 9382116655
+Location: London
+Summary: Kavya is a motivated professional. She has 3 years of experience in data visualization, machine learning, numpy. Her projects focus on reliable, well-tested solutions.
+Skills: data visualization, machine learning, numpy, pandas, scikit-learn, sql, statistics
+Experience: 3 years of experience. Worked at Orbit Analytics (2026-2029) using data visualization, machine learning, numpy, pandas.
+Education: Bachelor of Engineering in Computer Science, University of Mumbai, graduated 2025."
+Ahmed Khan,ahmed.khan3@example.com,Data Science,male,"Ahmed Khan
+Email: ahmed.khan3@example.com | Phone: 9208449460
+Location: London
+Gender: Male
+Summary: Ahmed is a motivated professional. He has 4 years of experience in data visualization, machine learning, numpy. His projects focus on reliable, well-tested solutions.
+Skills: data visualization, machine learning, numpy, pandas, python, pytorch, scikit-learn, statistics, tensorflow
+Experience: 4 years of experience. Worked at Northwind Systems (2011-2015) using data visualization, machine learning, numpy, pandas.
+Education: B.Sc in Computer Science, IIT Madras, graduated 2010."
+Aisha Chopra,aisha.chopra59@example.com,DevOps,female,"Aisha Chopra
+Email: aisha.chopra59@example.com | Phone: 9951580447
+Location: Bengaluru
+Summary: Aisha is a motivated professional. She has 8 years of experience in aws, bash, ci/cd. Her projects focus on reliable, well-tested solutions.
+Skills: aws, bash, ci/cd, git, monitoring, python, siem, terraform, vulnerability assessment
+Experience: 8 years of experience. Worked at Lumen Software (2022-2030) using aws, bash, ci/cd, git.
+Education: B.Tech in Computer Science, Delhi University, graduated 2021."
+Aditya Bose,aditya.bose26@example.com,Web Development,male,"Aditya Bose
+Email: aditya.bose26@example.com | Phone: 9572309605
+Location: Bengaluru
+Summary: Aditya is a motivated professional. He has 7 years of experience in css, git, monitoring. His projects focus on reliable, well-tested solutions.
+Skills: css, git, monitoring, react, rest api, sql
+Experience: 7 years of experience. Worked at BrightPath Tech (2016-2023) using css, git, monitoring, react.
+Education: M.Tech in Computer Science, University of Mumbai, graduated 2015."
+Priya Menon,priya.menon1@example.com,Data Science,female,"Priya Menon
+Email: priya.menon1@example.com | Phone: 9349817734
+Location: Toronto
+Summary: Priya is a motivated professional. She has 0 years of experience in docker, machine learning, numpy. Her projects focus on reliable, well-tested solutions.
+Skills: docker, machine learning, numpy, python, scikit-learn
+Experience: 0 years of experience. Worked at Lumen Software (2011-2012) using docker, machine learning, numpy, python.
+Education: B.Sc in Computer Science, IIT Madras, graduated 2010."
+Rahul Khan,rahul.khan21@example.com,Web Development,male,"Rahul Khan
+Email: rahul.khan21@example.com | Phone: 9872482077
+Location: Delhi
+Gender: Male
+Summary: Rahul is a motivated professional. He has 8 years of experience in css, flask, html. His projects focus on reliable, well-tested solutions.
+Skills: css, flask, html, javascript, mongodb, python, react, rest api, sql, statistics
+Experience: 8 years of experience. Worked at Zenith Labs (2026-2034) using css, flask, html, javascript.
+Education: Master of Science in Computer Science, Delhi University, graduated 2025."
+Olivia Pillai,olivia.pillai41@example.com,Cybersecurity,female,"Olivia Pillai
+Email: olivia.pillai41@example.com | Phone: 9473620340
+Location: London
+Gender: Female
+Summary: Olivia is a motivated professional. She has 7 years of experience in bash, cryptography, linux. Her projects focus on reliable, well-tested solutions.
+Skills: bash, cryptography, linux, network security, penetration testing, python, scikit-learn, siem, statistics, vulnerability assessment, wireshark
+Experience: 7 years of experience. Worked at Zenith Labs (2011-2018) using bash, cryptography, linux, network security.
+Education: M.Sc in Computer Science, VIT University, graduated 2010."
+Maria Rao,maria.rao29@example.com,Web Development,female,"Maria Rao
+Email: maria.rao29@example.com | Phone: 9450948014
+Location: Pune
+Summary: Maria is a motivated professional. She has 5 years of experience in html, javascript, node.js. Her projects focus on reliable, well-tested solutions.
+Skills: html, javascript, node.js, react, rest api, sql, statistics
+Experience: 5 years of experience. Worked at Orbit Analytics (2015-2020) using html, javascript, node.js, react.
+Education: M.Sc in Computer Science, University of Mumbai, graduated 2014."
+Nikhil Johnson,nikhil.johnson58@example.com,DevOps,male,"Nikhil Johnson
+Email: nikhil.johnson58@example.com | Phone: 9557707813
+Location: Bengaluru
+Gender: Male
+Summary: Nikhil is a motivated professional. He has 0 years of experience in bash, ci/cd, docker. His projects focus on reliable, well-tested solutions.
+Skills: bash, ci/cd, docker, kubernetes, monitoring, python, terraform
+Experience: 0 years of experience. Worked at Orbit Analytics (2024-2025) using bash, ci/cd, docker, kubernetes.
+Education: M.Sc in Computer Science, Anna University, graduated 2023."
+Ananya Chopra,ananya.chopra49@example.com,DevOps,female,"Ananya Chopra
+Email: ananya.chopra49@example.com | Phone: 9686905284
+Location: Mumbai
+Gender: Female
+Summary: Ananya is a motivated professional. She has 7 years of experience in aws, bash, ci/cd. Her projects focus on reliable, well-tested solutions.
+Skills: aws, bash, ci/cd, git, kubernetes, linux, monitoring, terraform
+Experience: 7 years of experience. Worked at Northwind Systems (2018-2025) using aws, bash, ci/cd, git.
+Education: Master of Science in Computer Science, BITS Pilani, graduated 2017."
+Lakshmi Rao,lakshmi.rao46@example.com,DevOps,female,"Lakshmi Rao
+Email: lakshmi.rao46@example.com | Phone: 9733701411
+Location: Pune
+Summary: Lakshmi is a motivated professional. She has 0 years of experience in aws, docker, git. Her projects focus on reliable, well-tested solutions.
+Skills: aws, docker, git, linux, monitoring, python, terraform, vulnerability assessment
+Experience: 0 years of experience. Worked at Orbit Analytics (2013-2014) using aws, docker, git, linux.
+Education: Bachelor of Engineering in Computer Science, Anna University, graduated 2012."
+Aditya Nair,aditya.nair57@example.com,DevOps,male,"Aditya Nair
+Email: aditya.nair57@example.com | Phone: 9236105947
+Location: London
+Summary: Aditya is a motivated professional. He has 2 years of experience in aws, bash, ci/cd. His projects focus on reliable, well-tested solutions.
+Skills: aws, bash, ci/cd, docker, kubernetes, linux, monitoring, network security, python, terraform
+Experience: 2 years of experience. Worked at Zenith Labs (2017-2019) using aws, bash, ci/cd, docker.
+Education: B.Tech in Computer Science, NIT Trichy, graduated 2016."
+Nisha Joshi,nisha.joshi25@example.com,Web Development,female,"Nisha Joshi
+Email: nisha.joshi25@example.com | Phone: 9739362057
+Location: Pune
+Summary: Nisha is a motivated professional. She has 7 years of experience in html, javascript, node.js. Her projects focus on reliable, well-tested solutions.
+Skills: html, javascript, node.js, sql
+Experience: 7 years of experience. Worked at Orbit Analytics (2025-2032) using html, javascript, node.js, sql.
+Education: Bachelor of Engineering in Computer Science, BITS Pilani, graduated 2024."
+Sophia Khan,sophia.khan44@example.com,Cybersecurity,female,"Sophia Khan
+Email: sophia.khan44@example.com | Phone: 9645719501
+Location: Mumbai
+Summary: Sophia is a motivated professional. She has 6 years of experience in bash, firewalls, incident response. Her projects focus on reliable, well-tested solutions.
+Skills: bash, firewalls, incident response, linux, machine learning, penetration testing, siem, vulnerability assessment, wireshark
+Experience: 6 years of experience. Worked at Northwind Systems (2015-2021) using bash, firewalls, incident response, linux.
+Education: Bachelor of Engineering in Computer Science, VIT University, graduated 2014."
+Carlos Chopra,carlos.chopra34@example.com,Cybersecurity,male,"Carlos Chopra
+Email: carlos.chopra34@example.com | Phone: 9951405188
+Location: Chennai
+Gender: Male
+Summary: Carlos is a motivated professional. He has 7 years of experience in bash, firewalls, linux. His projects focus on reliable, well-tested solutions.
+Skills: bash, firewalls, linux, network security, penetration testing, siem, vulnerability assessment, wireshark
+Experience: 7 years of experience. Worked at BrightPath Tech (2024-2031) using bash, firewalls, linux, network security.
+Education: M.Sc in Computer Science, NIT Trichy, graduated 2023."
+Divya Johnson,divya.johnson18@example.com,Web Development,female,"Divya Johnson
+Email: divya.johnson18@example.com | Phone: 9937643439
+Location: Toronto
+Summary: Divya is a motivated professional. She has 3 years of experience in css, html, javascript. Her projects focus on reliable, well-tested solutions.
+Skills: css, html, javascript, react, rest api, sql
+Experience: 3 years of experience. Worked at Orbit Analytics (2012-2015) using css, html, javascript, react.
+Education: M.Tech in Computer Science, BITS Pilani, graduated 2011."
+Imran Mehta,imran.mehta45@example.com,Cybersecurity,male,"Imran Mehta
+Email: imran.mehta45@example.com | Phone: 9505026213
+Location: Dubai
+Summary: Imran is a motivated professional. He has 5 years of experience in bash, css, firewalls. His projects focus on reliable, well-tested solutions.
+Skills: bash, css, firewalls, linux, network security, python, siem, sql, vulnerability assessment
+Experience: 5 years of experience. Worked at BrightPath Tech (2026-2031) using bash, css, firewalls, linux.
+Education: Bachelor of Engineering in Computer Science, Delhi University, graduated 2025."
+Vikram Menon,vikram.menon12@example.com,Data Science,male,"Vikram Menon
+Email: vikram.menon12@example.com | Phone: 9329509408
+Location: London
+Summary: Vikram is a motivated professional. He has 6 years of experience in numpy, pandas, python. His projects focus on reliable, well-tested solutions.
+Skills: numpy, pandas, python, pytorch, scikit-learn, sql, tensorflow
+Experience: 6 years of experience. Worked at BrightPath Tech (2024-2030) using numpy, pandas, python, pytorch.
+Education: M.Sc in Computer Science, NIT Trichy, graduated 2023."
+Aisha Joshi,aisha.joshi42@example.com,Cybersecurity,female,"Aisha Joshi
+Email: aisha.joshi42@example.com | Phone: 9806157458
+Location: Toronto
+Gender: Female
+Summary: Aisha is a motivated professional. She has 6 years of experience in bash, cryptography, firewalls. Her projects focus on reliable, well-tested solutions.
+Skills: bash, cryptography, firewalls, incident response, network security, siem, vulnerability assessment, wireshark
+Experience: 6 years of experience. Worked at Zenith Labs (2025-2031) using bash, cryptography, firewalls, incident response.
+Education: B.Tech in Computer Science, IIT Madras, graduated 2024."
+Daniel Smith,daniel.smith15@example.com,Data Science,male,"Daniel Smith
+Email: daniel.smith15@example.com | Phone: 9269379374
+Location: Dubai
+Summary: Daniel is a motivated professional. He has 3 years of experience in deep learning, machine learning, numpy. His projects focus on reliable, well-tested solutions.
+Skills: deep learning, machine learning, numpy, pandas, python, scikit-learn, sql, statistics, tensorflow
+Experience: 3 years of experience. Worked at Northwind Systems (2020-2023) using deep learning, machine learning, numpy, pandas.
+Education: M.Tech in Computer Science, BITS Pilani, graduated 2019."
+Omar Menon,omar.menon31@example.com,Cybersecurity,male,"Omar Menon
+Email: omar.menon31@example.com | Phone: 9841541582
+Location: Delhi
+Gender: Male
+Summary: Omar is a motivated professional. He has 3 years of experience in git, incident response, linux. His projects focus on reliable, well-tested solutions.
+Skills: git, incident response, linux, network security, penetration testing, react, siem, vulnerability assessment, wireshark
+Experience: 3 years of experience. Worked at Northwind Systems (2011-2014) using git, incident response, linux, network security.
+Education: Bachelor of Engineering in Computer Science, VIT University, graduated 2010."
+Priya Reddy,priya.reddy10@example.com,Data Science,female,"Priya Reddy
+Email: priya.reddy10@example.com | Phone: 9713152854
+Location: Dubai
+Gender: Female
+Summary: Priya is a motivated professional. She has 8 years of experience in data visualization, linux, machine learning. Her projects focus on reliable, well-tested solutions.
+Skills: data visualization, linux, machine learning, nlp, numpy, python, pytorch, scikit-learn, sql
+Experience: 8 years of experience. Worked at Orbit Analytics (2013-2021) using data visualization, linux, machine learning, nlp.
+Education: Master of Science in Computer Science, VIT University, graduated 2012."
+Fatima Reddy,fatima.reddy14@example.com,Data Science,female,"Fatima Reddy
+Email: fatima.reddy14@example.com | Phone: 9869005091
+Location: Pune
+Gender: Female
+Summary: Fatima is a motivated professional. She has 4 years of experience in data visualization, deep learning, machine learning. Her projects focus on reliable, well-tested solutions.
+Skills: data visualization, deep learning, machine learning, numpy, pandas, python, rest api, scikit-learn, sql, tensorflow
+Experience: 4 years of experience. Worked at Orbit Analytics (2015-2019) using data visualization, deep learning, machine learning, numpy.
+Education: Master of Science in Computer Science, IIT Madras, graduated 2014."
+Daniel Joshi,daniel.joshi33@example.com,Cybersecurity,male,"Daniel Joshi
+Email: daniel.joshi33@example.com | Phone: 9623502759
+Location: Delhi
+Gender: Male
+Summary: Daniel is a motivated professional. He has 7 years of experience in bash, firewalls, incident response. His projects focus on reliable, well-tested solutions.
+Skills: bash, firewalls, incident response, linux, network security, penetration testing, siem, vulnerability assessment, wireshark
+Experience: 7 years of experience. Worked at Northwind Systems (2019-2026) using bash, firewalls, incident response, linux.
+Education: B.Sc in Computer Science, University of Mumbai, graduated 2018."
+Arjun Sharma,arjun.sharma37@example.com,Cybersecurity,male,"Arjun Sharma
+Email: arjun.sharma37@example.com | Phone: 9260199682
+Location: Hyderabad
+Gender: Male
+Summary: Arjun is a motivated professional. He has 1 years of experience in cryptography, data visualization, linux. His projects focus on reliable, well-tested solutions.
+Skills: cryptography, data visualization, linux, network security, penetration testing, python, siem, vulnerability assessment, wireshark
+Experience: 1 years of experience. Worked at BrightPath Tech (2010-2011) using cryptography, data visualization, linux, network security.
+Education: B.Sc in Computer Science, Anna University, graduated 2009."
+Olivia Bose,olivia.bose7@example.com,Data Science,female,"Olivia Bose
+Email: olivia.bose7@example.com | Phone: 9313579170
+Location: Mumbai
+Gender: Female
+Summary: Olivia is a motivated professional. She has 4 years of experience in deep learning, git, html. Her projects focus on reliable, well-tested solutions.
+Skills: deep learning, git, html, machine learning, numpy, pandas, python, pytorch, scikit-learn, sql, statistics
+Experience: 4 years of experience. Worked at BrightPath Tech (2025-2029) using deep learning, git, html, machine learning.
+Education: Bachelor of Engineering in Computer Science, BITS Pilani, graduated 2024."
+Rahul Nair,rahul.nair47@example.com,DevOps,male,"Rahul Nair
+Email: rahul.nair47@example.com | Phone: 9762992051
+Location: Bengaluru
+Gender: Male
+Summary: Rahul is a motivated professional. He has 7 years of experience in aws, firewalls, git. His projects focus on reliable, well-tested solutions.
+Skills: aws, firewalls, git, incident response, kubernetes, linux, monitoring, python, terraform
+Experience: 7 years of experience. Worked at Northwind Systems (2026-2033) using aws, firewalls, git, incident response.
+Education: B.Tech in Computer Science, IIT Madras, graduated 2025."
+Aditya Das,aditya.das20@example.com,Web Development,male,"Aditya Das
+Email: aditya.das20@example.com | Phone: 9129635852
+Location: Bengaluru
+Summary: Aditya is a motivated professional. He has 6 years of experience in css, react, rest api. His projects focus on reliable, well-tested solutions.
+Skills: css, react, rest api, sql, wireshark
+Experience: 6 years of experience. Worked at Northwind Systems (2026-2032) using css, react, rest api, sql.
+Education: M.Tech in Computer Science, IIT Madras, graduated 2025."
+Daniel Chopra,daniel.chopra39@example.com,Cybersecurity,male,"Daniel Chopra
+Email: daniel.chopra39@example.com | Phone: 9223240112
+Location: Toronto
+Gender: Male
+Summary: Daniel is a motivated professional. He has 4 years of experience in cryptography, firewalls, incident response. His projects focus on reliable, well-tested solutions.
+Skills: cryptography, firewalls, incident response, linux, network security, vulnerability assessment
+Experience: 4 years of experience. Worked at BrightPath Tech (2015-2019) using cryptography, firewalls, incident response, linux.
+Education: M.Sc in Computer Science, University of Mumbai, graduated 2014."
+Maria Das,maria.das19@example.com,Web Development,female,"Maria Das
+Email: maria.das19@example.com | Phone: 9338836384
+Location: Delhi
+Summary: Maria is a motivated professional. She has 6 years of experience in css, html, javascript. Her projects focus on reliable, well-tested solutions.
+Skills: css, html, javascript, mongodb, node.js, react, rest api, sql
+Experience: 6 years of experience. Worked at Orbit Analytics (2010-2016) using css, html, javascript, mongodb.
+Education: M.Sc in Computer Science, University of Mumbai, graduated 2009."
+Maria Joshi,maria.joshi55@example.com,DevOps,female,"Maria Joshi
+Email: maria.joshi55@example.com | Phone: 9485123110
+Location: Chennai
+Gender: Female
+Summary: Maria is a motivated professional. She has 5 years of experience in aws, bash, docker. Her projects focus on reliable, well-tested solutions.
+Skills: aws, bash, docker, kubernetes, linux, monitoring, python, terraform
+Experience: 5 years of experience. Worked at BrightPath Tech (2026-2031) using aws, bash, docker, kubernetes.
+Education: Master of Science in Computer Science, Anna University, graduated 2025."
+Divya Pillai,divya.pillai28@example.com,Web Development,female,"Divya Pillai
+Email: divya.pillai28@example.com | Phone: 9460916347
+Location: London
+Summary: Divya is a motivated professional. She has 7 years of experience in css, flask, git. Her projects focus on reliable, well-tested solutions.
+Skills: css, flask, git, javascript, mongodb, node.js, react, statistics
+Experience: 7 years of experience. Worked at Orbit Analytics (2009-2016) using css, flask, git, javascript.
+Education: M.Sc in Computer Science, IIT Madras, graduated 2008."
+Liam Joshi,liam.joshi50@example.com,DevOps,male,"Liam Joshi
+Email: liam.joshi50@example.com | Phone: 9108695125
+Location: Chennai
+Summary: Liam is a motivated professional. He has 0 years of experience in bash, ci/cd, docker. His projects focus on reliable, well-tested solutions.
+Skills: bash, ci/cd, docker, git, kubernetes, linux, monitoring, siem
+Experience: 0 years of experience. Worked at Orbit Analytics (2021-2022) using bash, ci/cd, docker, git.
+Education: M.Tech in Computer Science, VIT University, graduated 2020."
+Sneha Gupta,sneha.gupta23@example.com,Web Development,female,"Sneha Gupta
+Email: sneha.gupta23@example.com | Phone: 9779615069
+Location: Pune
+Gender: Female
+Summary: Sneha is a motivated professional. She has 4 years of experience in django, git, linux. Her projects focus on reliable, well-tested solutions.
+Skills: django, git, linux, mongodb, penetration testing, react, rest api, sql
+Experience: 4 years of experience. Worked at BrightPath Tech (2025-2029) using django, git, linux, mongodb.
+Education: Master of Science in Computer Science, Delhi University, graduated 2024."
+Imran Bose,imran.bose27@example.com,Web Development,male,"Imran Bose
+Email: imran.bose27@example.com | Phone: 9166857303
+Location: Delhi
+Summary: Imran is a motivated professional. He has 8 years of experience in css, firewalls, git. His projects focus on reliable, well-tested solutions.
+Skills: css, firewalls, git, html, mongodb, react, typescript
+Experience: 8 years of experience. Worked at Orbit Analytics (2023-2031) using css, firewalls, git, html.
+Education: M.Sc in Computer Science, VIT University, graduated 2022."
+Lakshmi Smith,lakshmi.smith8@example.com,Data Science,female,"Lakshmi Smith
+Email: lakshmi.smith8@example.com | Phone: 9916690353
+Location: Toronto
+Summary: Lakshmi is a motivated professional. She has 1 years of experience in data visualization, machine learning, python. Her projects focus on reliable, well-tested solutions.
+Skills: data visualization, machine learning, python, sql, statistics
+Experience: 1 years of experience. Worked at BrightPath Tech (2024-2025) using data visualization, machine learning, python, sql.
+Education: B.Tech in Computer Science, Delhi University, graduated 2023."
+Suresh Kumar,suresh.kumar43@example.com,Cybersecurity,male,"Suresh Kumar
+Email: suresh.kumar43@example.com | Phone: 9114682844
+Location: Toronto
+Gender: Male
+Summary: Suresh is a motivated professional. He has 2 years of experience in bash, cryptography, firewalls. His projects focus on reliable, well-tested solutions.
+Skills: bash, cryptography, firewalls, incident response, linux, network security, pandas, penetration testing, python, scikit-learn, siem
+Experience: 2 years of experience. Worked at BrightPath Tech (2018-2020) using bash, cryptography, firewalls, incident response.
+Education: Bachelor of Engineering in Computer Science, VIT University, graduated 2017."
+Suresh Smith,suresh.smith22@example.com,Web Development,male,"Suresh Smith
+Email: suresh.smith22@example.com | Phone: 9507104143
+Location: Mumbai
+Summary: Suresh is a motivated professional. He has 3 years of experience in css, django, git. His projects focus on reliable, well-tested solutions.
+Skills: css, django, git, html, linux, node.js, react, rest api, siem
+Experience: 3 years of experience. Worked at Northwind Systems (2022-2025) using css, django, git, html.
+Education: Master of Science in Computer Science, NIT Trichy, graduated 2021."
+Aditya Bose,aditya.bose53@example.com,DevOps,male,"Aditya Bose
+Email: aditya.bose53@example.com | Phone: 9126870011
+Location: Toronto
+Gender: Male
+Summary: Aditya is a motivated professional. He has 1 years of experience in aws, bash, ci/cd. His projects focus on reliable, well-tested solutions.
+Skills: aws, bash, ci/cd, docker, firewalls, linux, monitoring, terraform
+Experience: 1 years of experience. Worked at Lumen Software (2016-2017) using aws, bash, ci/cd, docker.
+Education: M.Sc in Computer Science, IIT Madras, graduated 2015."
+Arjun Singh,arjun.singh56@example.com,DevOps,male,"Arjun Singh
+Email: arjun.singh56@example.com | Phone: 9931471931
+Location: Mumbai
+Summary: Arjun is a motivated professional. He has 3 years of experience in aws, ci/cd, docker. His projects focus on reliable, well-tested solutions.
+Skills: aws, ci/cd, docker, git, kubernetes, monitoring, numpy, pandas, terraform
+Experience: 3 years of experience. Worked at Lumen Software (2016-2019) using aws, ci/cd, docker, git.
+Education: M.Tech in Computer Science, Anna University, graduated 2015."
+Suresh Chopra,suresh.chopra38@example.com,Cybersecurity,male,"Suresh Chopra
+Email: suresh.chopra38@example.com | Phone: 9357553274
+Location: Mumbai
+Summary: Suresh is a motivated professional. He has 4 years of experience in bash, cryptography, firewalls. His projects focus on reliable, well-tested solutions.
+Skills: bash, cryptography, firewalls, incident response, linux, network security, penetration testing, python, vulnerability assessment, wireshark
+Experience: 4 years of experience. Worked at BrightPath Tech (2011-2015) using bash, cryptography, firewalls, incident response.
+Education: B.Sc in Computer Science, Anna University, graduated 2010."
+Imran Singh,imran.singh4@example.com,Data Science,male,"Imran Singh
+Email: imran.singh4@example.com | Phone: 9982403818
+Location: Chennai
+Summary: Imran is a motivated professional. He has 5 years of experience in cryptography, data visualization, numpy. His projects focus on reliable, well-tested solutions.
+Skills: cryptography, data visualization, numpy, python, pytorch, scikit-learn, sql, statistics, wireshark
+Experience: 5 years of experience. Worked at Orbit Analytics (2010-2015) using cryptography, data visualization, numpy, python.
+Education: B.Sc in Computer Science, University of Mumbai, graduated 2009."
+Kavya Singh,kavya.singh36@example.com,Cybersecurity,female,"Kavya Singh
+Email: kavya.singh36@example.com | Phone: 9148872110
+Location: Chennai
+Summary: Kavya is a motivated professional. She has 8 years of experience in cryptography, firewalls, linux. Her projects focus on reliable, well-tested solutions.
+Skills: cryptography, firewalls, linux, network security, penetration testing, siem, wireshark
+Experience: 8 years of experience. Worked at BrightPath Tech (2013-2021) using cryptography, firewalls, linux, network security.
+Education: M.Tech in Computer Science, Delhi University, graduated 2012."
+Ahmed Patel,ahmed.patel9@example.com,Data Science,male,"Ahmed Patel
+Email: ahmed.patel9@example.com | Phone: 9463016614
+Location: Chennai
+Summary: Ahmed is a motivated professional. He has 3 years of experience in data visualization, deep learning, machine learning. His projects focus on reliable, well-tested solutions.
+Skills: data visualization, deep learning, machine learning, numpy, penetration testing, sql, statistics, vulnerability assessment
+Experience: 3 years of experience. Worked at BrightPath Tech (2016-2019) using data visualization, deep learning, machine learning, numpy.
+Education: B.Tech in Computer Science, BITS Pilani, graduated 2015."
+Vikram Singh,vikram.singh52@example.com,DevOps,male,"Vikram Singh
+Email: vikram.singh52@example.com | Phone: 9180852074
+Location: Mumbai
+Summary: Vikram is a motivated professional. He has 5 years of experience in aws, ci/cd, git. His projects focus on reliable, well-tested solutions.
+Skills: aws, ci/cd, git, monitoring, node.js, terraform
+Experience: 5 years of experience. Worked at BrightPath Tech (2012-2017) using aws, ci/cd, git, monitoring.
+Education: M.Sc in Computer Science, VIT University, graduated 2011."
+Karthik Singh,karthik.singh24@example.com,Web Development,male,"Karthik Singh
+Email: karthik.singh24@example.com | Phone: 9361976301
+Location: Mumbai
+Summary: Karthik is a motivated professional. He has 6 years of experience in cryptography, html, javascript. His projects focus on reliable, well-tested solutions.
+Skills: cryptography, html, javascript, node.js, react
+Experience: 6 years of experience. Worked at Zenith Labs (2024-2030) using cryptography, html, javascript, node.js.
+Education: M.Sc in Computer Science, VIT University, graduated 2023."
+Emily Khan,emily.khan48@example.com,DevOps,female,"Emily Khan
+Email: emily.khan48@example.com | Phone: 9670335494
+Location: London
+Summary: Emily is a motivated professional. She has 6 years of experience in aws, bash, docker. Her projects focus on reliable, well-tested solutions.
+Skills: aws, bash, docker, git, kubernetes, linux, monitoring, python, rest api
+Experience: 6 years of experience. Worked at BrightPath Tech (2013-2019) using aws, bash, docker, git.
+Education: B.Sc in Computer Science, IIT Madras, graduated 2012."
