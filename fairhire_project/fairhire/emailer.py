@@ -10,7 +10,6 @@ import re
 import smtplib
 from email.message import EmailMessage
 
-# Which pipeline status triggers which email template.
 STATUS_EMAIL = {"Shortlisted": "shortlist", "Interview": "interview", "Offer": "offer", "Closed": "closure"}
 
 TEMPLATES = {
@@ -33,7 +32,6 @@ TEMPLATES = {
 
 _PLACEHOLDER = re.compile(r"\[[A-Z][A-Z /]+\]")
 
-
 def build_draft(kind, name, job, company="Our Company", sender="The Hiring Team", missing_skills=None):
     """Create {subject, body} for template `kind`; closure emails include skill feedback."""
     if kind not in TEMPLATES:
@@ -49,11 +47,9 @@ def build_draft(kind, name, job, company="Our Company", sender="The Hiring Team"
     fields = dict(name=name, job=job, company=company, sender=sender, feedback=feedback)
     return {"kind": kind, "subject": subject.format(**fields), "body": body.format(**fields)}
 
-
 def unresolved_placeholders(body):
     """List [PLACEHOLDER] tokens HR still has to fill in."""
     return _PLACEHOLDER.findall(body)
-
 
 def send(to_address, subject, body, confirmed):
     """Send an email.  Returns 'sent' (real SMTP) or 'simulated' (dry-run).
@@ -64,7 +60,7 @@ def send(to_address, subject, body, confirmed):
         raise PermissionError("Email not confirmed by HR - refusing to send.")
     host = os.environ.get("FAIRHIRE_SMTP_HOST")
     if not host:
-        return "simulated"  # dry-run: demo mode without mail credentials
+        return "simulated"
     msg = EmailMessage()
     msg["From"] = os.environ.get("FAIRHIRE_SMTP_FROM", os.environ.get("FAIRHIRE_SMTP_USER", ""))
     msg["To"], msg["Subject"] = to_address, subject

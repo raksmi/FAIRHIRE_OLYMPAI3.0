@@ -2,6 +2,9 @@
 
 Tables: jobs, candidates, emails, audit_log.  Every change is written to
 audit_log so the Company Head can see who did what (human accountability).
+
+The candidates table stores the full analysis payload (criteria, verdict,
+feedback, parsed facts) so the "why" survives a page reload and is auditable.
 """
 import json
 import sqlite3
@@ -19,11 +22,19 @@ CREATE TABLE IF NOT EXISTS jobs(id INTEGER PRIMARY KEY, title TEXT, category TEX
 CREATE TABLE IF NOT EXISTS candidates(id INTEGER PRIMARY KEY, job_id INTEGER, name TEXT, email TEXT,
     text TEXT, gender TEXT, category TEXT, status TEXT DEFAULT 'Applied', score REAL, rank INTEGER,
     matched TEXT, missing TEXT, contribs TEXT, base_value REAL, notes TEXT DEFAULT '',
-    head_decision TEXT DEFAULT 'pending');
+    head_decision TEXT DEFAULT 'pending', hr_decision TEXT DEFAULT 'pending', criteria TEXT, verdict TEXT, feedback TEXT, parsed TEXT,
+    confidence TEXT, core_coverage REAL, preferred_coverage REAL, ats_score REAL);
 CREATE TABLE IF NOT EXISTS emails(id INTEGER PRIMARY KEY, candidate_id INTEGER, kind TEXT, subject TEXT,
     body TEXT, status TEXT, created_at TEXT);
 CREATE TABLE IF NOT EXISTS audit_log(id INTEGER PRIMARY KEY, ts TEXT, actor TEXT, action TEXT, detail TEXT);
 """
+
+_JSON_COLUMNS = ("matched", "missing", "contribs", "criteria", "verdict", "feedback", "parsed")
+_EXTRA_COLUMNS = {
+    "criteria": "TEXT", "verdict": "TEXT", "feedback": "TEXT", "parsed": "TEXT",
+    "confidence": "TEXT", "core_coverage": "REAL", "preferred_coverage": "REAL", "ats_score": "REAL",
+    "hr_decision": "TEXT DEFAULT 'pending'",
+}
 
 
 def _now():
@@ -34,12 +45,20 @@ class Store:
     """Thin wrapper around the SQLite database."""
 
     def __init__(self, path=":memory:", company="Our Company"):
-        self.conn = sqlite3.connect(path, check_same_thread=False)  # Streamlit uses several threads
+        self.conn = sqlite3.connect(path, check_same_thread=False)
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(SCHEMA)
+        self._migrate()
         self.company = company
 
-    # ---- helpers ---------------------------------------------------------------
+    def _migrate(self):
+        """Add new analysis columns to databases created by an earlier build."""
+        existing = {r["name"] for r in self.conn.execute("PRAGMA table_info(candidates)")}
+        for col, typ in _EXTRA_COLUMNS.items():
+            if col not in existing:
+                self.conn.execute(f"ALTER TABLE candidates ADD COLUMN {col} {typ}")
+        self.conn.commit()
+
     def _df(self, sql, params=()):
         return pd.read_sql_query(sql, self.conn, params=params)
 
@@ -48,7 +67,6 @@ class Store:
                           (_now(), actor, action, detail))
         self.conn.commit()
 
-    # ---- jobs ----------------------------------------------------------------
     def add_job(self, job, actor="system"):
         cur = self.conn.execute(
             "INSERT INTO jobs(title, category, description, required, nice, min_years, min_edu) VALUES (?,?,?,?,?,?,?)",
@@ -69,7 +87,6 @@ class Store:
     def get_job(self, job_id):
         return next(j for j in self.get_jobs() if j["id"] == job_id)
 
-    # ---- candidates ----------------------------------------------------------
     def add_candidate(self, job_id, name, email, text, gender="", category="", actor="system"):
         cur = self.conn.execute(
             "INSERT INTO candidates(job_id, name, email, text, gender, category) VALUES (?,?,?,?,?,?)",
@@ -81,27 +98,47 @@ class Store:
     def candidates(self, job_id=None):
         df = self._df("SELECT * FROM candidates" + (" WHERE job_id = ?" if job_id else ""),
                       (job_id,) if job_id else ())
-        for col in ("matched", "missing", "contribs"):
-            df[col] = df[col].apply(lambda v: json.loads(v) if v else ([] if col != "contribs" else {}))
+        for col in _JSON_COLUMNS:
+            if col not in df.columns:
+                continue
+            if col == "contribs":
+                df[col] = df[col].apply(lambda v: json.loads(v) if v else {})
+            elif col in ("criteria", "verdict", "feedback", "parsed"):
+                df[col] = df[col].apply(lambda v: json.loads(v) if v else ([] if col == "criteria" else {}))
+            else:
+                df[col] = df[col].apply(lambda v: json.loads(v) if v else [])
         return df
 
+    def get_candidate(self, cid):
+        df = self.candidates()
+        if df.empty:
+            return None
+        row = df[df["id"] == cid]
+        return None if row.empty else row.iloc[0]
+
     def save_ranking(self, ranked, actor="system"):
-        """Store scores + explanations from ranker.rank_candidates; move Applied -> Screened."""
+        """Store scores + full explanations from ranker.rank_candidates."""
         for _, r in ranked.iterrows():
             self.conn.execute(
                 "UPDATE candidates SET score=?, rank=?, matched=?, missing=?, contribs=?, base_value=?, "
+                "criteria=?, verdict=?, feedback=?, parsed=?, confidence=?, core_coverage=?, "
+                "preferred_coverage=?, ats_score=?, "
                 "status=CASE WHEN status='Applied' THEN 'Screened' ELSE status END WHERE id=?",
                 (float(r["score"]), int(r["rank"]), json.dumps(r["matched"]), json.dumps(r["missing"]),
-                 json.dumps({k: float(v) for k, v in r["contribs"].items()}), float(r["base_value"]), int(r["id"])))
+                 json.dumps({k: float(v) for k, v in r["contribs"].items()}), float(r["base_value"]),
+                 json.dumps(r.get("criteria", [])), json.dumps(r.get("verdict", {})),
+                 json.dumps(r.get("feedback", {})), json.dumps(r.get("parsed", {})),
+                 str(r.get("confidence", "")), float(r.get("core_coverage", 0.0)),
+                 float(r.get("preferred_coverage", 0.0)), float(r.get("ats_score", 0.0)),
+                 int(r["id"])))
         self.conn.commit()
-        self.log(actor, "ranking_run", f"{len(ranked)} candidates scored")
+        self.log(actor, "ranking_run", f"{len(ranked)} candidates scored with evidence")
 
     def set_note(self, cid, note, actor):
         self.conn.execute("UPDATE candidates SET notes=? WHERE id=?", (note, cid))
         self.conn.commit()
         self.log(actor, "note_saved", f"candidate {cid}")
 
-    # ---- workflow rules --------------------------------------------------------
     def set_status(self, cid, new_status, actor="HR Recruiter"):
         """Move a candidate along the pipeline.
 
@@ -131,6 +168,17 @@ class Store:
         self.log("FairHire AI", "email_drafted", f"{kind} email for {row['name']}")
         return cur.lastrowid
 
+    def set_hr_decision(self, cid, decision, actor="HR Recruiter"):
+        """Record the HR triage decision. Accepted applicants enter the Head queue."""
+        if decision not in ("accepted", "rejected", "pending"):
+            raise ValueError("decision must be accepted / rejected / pending")
+        if decision != "accepted":
+            self.conn.execute("UPDATE candidates SET hr_decision=?, head_decision='pending' WHERE id=?", (decision, cid))
+        else:
+            self.conn.execute("UPDATE candidates SET hr_decision=?, head_decision='pending' WHERE id=?", (decision, cid))
+        self.conn.commit()
+        self.log(actor, "hr_decision", f"candidate {cid}: {decision}")
+
     def head_decide(self, cid, decision, actor="Company Head"):
         """decision: 'approved' or 'sent back'."""
         if decision not in ("approved", "sent back", "pending"):
@@ -139,7 +187,6 @@ class Store:
         self.conn.commit()
         self.log(actor, "head_decision", f"candidate {cid}: {decision}")
 
-    # ---- emails ----------------------------------------------------------------
     def emails(self):
         return self._df("SELECT e.*, c.name AS candidate, c.email AS address FROM emails e "
                         "JOIN candidates c ON c.id = e.candidate_id ORDER BY e.id DESC")
@@ -166,12 +213,11 @@ class Store:
         self.log(actor, "email_" + result, f"email {eid} to {e['address']}")
         return result
 
-    # ---- reporting -------------------------------------------------------------
     def audit_log(self):
         return self._df("SELECT ts, actor, action, detail FROM audit_log ORDER BY id DESC")
 
     def funnel(self, job_id=None):
-        """Candidates per pipeline stage (cumulative stages counted by current status)."""
+        """Candidates per pipeline stage (current status)."""
         df = self.candidates(job_id)
         counts = df["status"].value_counts() if len(df) else pd.Series(dtype=int)
         return pd.Series({s: int(counts.get(s, 0)) for s in STATUSES})

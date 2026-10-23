@@ -1,28 +1,46 @@
-"""Scoring, ranking and explanations.
+"""Scoring, ranking and exact additive explanations.
 
-Score (0-100) = 100 * sum(weight_i * feature_i) over five features, each in [0, 1]:
-  skill_match  share of the job's REQUIRED skills the candidate has
-  nice_skills  share of the NICE-TO-HAVE skills
-  experience   years of experience / years the job asks for (capped at 1)
-  education    degree level / level the job asks for (capped at 1)
-  text_match   TF-IDF cosine similarity between the (anonymised) resume and the job text
+Score (0-100) = 100 * sum(weight_i * feature_i) over five features in [0, 1]:
+  skill_match  weighted coverage of the role's CORE competencies (evidence-based)
+  nice_skills  weighted coverage of PREFERRED competencies
+  experience   years detected / years the role asks for (capped at 1)
+  education    highest degree level / level the role asks for (capped at 1)
+  text_match   semantic similarity when available; otherwise TF-IDF cosine
 
-Explanations: because the model is linear, the exact Shapley (SHAP) value of
-feature i for one candidate is  weight_i * (x_i - mean_i) * 100,  where mean_i is
-the average over the applicant pool.  Contributions + base value add up exactly to
+Explanations: because the model is linear, the exact contribution of feature i
+for one candidate is  weight_i * (x_i - mean_i) * 100, where mean_i is the
+average over the applicant pool.  Contributions + base value add up exactly to
 the score, so every ranking can be explained with zero approximation.
+
+Every candidate also carries a full evidence trail (per-competency matched
+phrases and quoted sentences), a plain-language verdict with reasons for and
+against, counterfactuals, confidence and resume-improvement feedback.
 """
+import os
+import re
+
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from .anonymizer import anonymize
-from .skills import extract_education_level, extract_skills, extract_years_experience
+try:
+    from .semantic import semantic_scores
+except Exception:  # optional model dependency
+    semantic_scores = None
 
-FEATURES = ["skill_match", "nice_skills", "experience", "education", "text_match"]
-DEFAULT_WEIGHTS = {"skill_match": 0.45, "nice_skills": 0.10, "experience": 0.15,
-                   "education": 0.10, "text_match": 0.20}
+from .analyzer import (
+    DEFAULT_WEIGHTS,
+    FEATURES,
+    build_feedback,
+    build_verdict,
+    evaluate_candidate,
+    job_query,
+    lexical_recall,
+)
+from .anonymizer import anonymize
+from .similarity import text_similarity
+from .taxonomy import get_profile
 
 
 def _normalise_weights(weights):
@@ -32,44 +50,52 @@ def _normalise_weights(weights):
     return {f: v / total for f, v in w.items()}
 
 
+def _job_query(job):
+    return job_query(job)
+
+
+def _text_similarity(job, documents):
+    """Return (scores, engine_name) using the same function as the Analyser."""
+    return text_similarity(job_query(job), list(documents))
+
+
 def rank_candidates(job, candidates, weights=None, anonymise=True):
-    """Rank candidates for one job.
+    """Rank candidates for one job and attach a full explanation to each row.
 
     job        dict with title, description, required, nice, min_years, min_edu
     candidates DataFrame with columns id, name, text
-    anonymise  True  -> text_match uses identity-masked resumes (FairHire's default)
+    anonymise  True  -> text similarity uses identity-masked resumes (default)
                False -> raw text (used only by the fairness audit to show 'before')
-    Returns a DataFrame sorted best-first with features, matched/missing skills,
-    SHAP-style contributions and a 1-based rank.
     """
     w = _normalise_weights(weights)
     cands = candidates.reset_index(drop=True)
-    required, nice = set(job["required"]), set(job.get("nice", []))
+    if cands.empty:
+        return cands
 
-    # Structured features come from the ORIGINAL text (rules ignore identity words).
+    evaluations = [evaluate_candidate(str(c["text"] or ""), job) for _, c in cands.iterrows()]
+
+    used = [anonymize(str(t), n) if anonymise else str(t)
+            for t, n in zip(cands["text"], cands["name"])]
+    sim, engine = _text_similarity(job, used)
+
     rows = []
-    for _, c in cands.iterrows():
-        skills = set(extract_skills(c["text"]))
-        years = extract_years_experience(c["text"])
-        edu = extract_education_level(c["text"])
+    for i, ev in enumerate(evaluations):
+        features = dict(ev["features"])
+        features["text_match"] = float(sim[i])
         rows.append({
-            "skill_match": len(skills & required) / max(len(required), 1),
-            "nice_skills": len(skills & nice) / max(len(nice), 1) if nice else 0.0,
-            "experience": min(years / max(job.get("min_years", 1), 1), 1.0),
-            "education": min(edu / max(job.get("min_edu", 1), 1), 1.0),
-            "matched": sorted(skills & required), "missing": sorted(required - skills),
-            "bonus": sorted(skills & nice), "years": years,
+            **features,
+            "matched": [c["label"] for c in ev["criteria"] if c["core"] and c["matched"]],
+            "missing": [c["label"] for c in ev["criteria"] if c["core"] and not c["matched"]],
+            "bonus": [c["label"] for c in ev["criteria"] if not c["core"] and c["matched"]],
+            "detected_skills": ev["parsed"]["skills"],
+            "years": ev["years"],
+            "core_coverage": ev["core_coverage"],
+            "preferred_coverage": ev["preferred_coverage"],
+            "education_level": ev["education_level"],
+            "ats_score": ev["parsed"]["ats_score"],
         })
     feat = pd.DataFrame(rows)
 
-    # Text similarity: fit TF-IDF on job + pool, compare each resume with the job text.
-    used = [anonymize(t, n) if anonymise else t for t, n in zip(cands["text"], cands["name"])]
-    vec = TfidfVectorizer(stop_words="english", ngram_range=(1, 2), sublinear_tf=True)
-    mat = vec.fit_transform([job["description"] + " " + " ".join(job["required"])] + used)
-    sim = cosine_similarity(mat[0], mat[1:]).ravel()
-    feat["text_match"] = sim / (sim.max() + 1e-9)  # scale to [0, 1] within the pool
-
-    # Weighted score + exact linear Shapley contributions against the pool mean.
     X = feat[FEATURES].to_numpy(dtype=float)
     wv = np.array([w[f] for f in FEATURES])
     scores = X @ wv * 100
@@ -79,22 +105,55 @@ def rank_candidates(job, candidates, weights=None, anonymise=True):
     out = cands[["id", "name"]].copy()
     out["score"] = np.round(scores, 2)
     for f in FEATURES:
-        out[f] = np.round(feat[f], 3)
-    for col in ("matched", "missing", "bonus", "years"):
+        out[f] = np.round(feat[f], 4)
+    for col in ("matched", "missing", "bonus", "detected_skills", "years",
+                "core_coverage", "preferred_coverage", "education_level", "ats_score"):
         out[col] = feat[col]
+
+    # Build verdict + feedback per candidate, now that the final score is known.
+    verdicts, feedbacks, criteria_all, parsed_all = [], [], [], []
+    for i, ev in enumerate(evaluations):
+        ev["features"] = {**ev["features"], "text_match": float(sim[i])}
+        verdict = build_verdict(ev, float(scores[i]), weights, role=job.get("title", ""))
+        feedback = build_feedback(ev, verdict)
+        verdicts.append(verdict)
+        feedbacks.append(feedback)
+        criteria_all.append(ev["criteria"])
+        parsed_all.append({
+            "name": ev["parsed"]["name"],
+            "email": ev["parsed"]["email"],
+            "phone": ev["parsed"]["phone"],
+            "links": ev["parsed"]["links"],
+            "section_names": ev["parsed"]["section_names"],
+            "word_count": ev["parsed"]["word_count"],
+            "total_years": ev["parsed"]["total_years"],
+            "experience": ev["parsed"]["experience"],
+            "education": ev["parsed"]["education"],
+            "education_label": ev["parsed"]["education_label"],
+            "skills": ev["parsed"]["skills"],
+            "quantified": ev["parsed"]["quantified"],
+            "bullet_lines": ev["parsed"]["bullet_lines"],
+            "action_verbs": ev["parsed"]["action_verbs"],
+            "ats": ev["parsed"]["ats"],
+            "ats_score": ev["parsed"]["ats_score"],
+        })
+
+    out["criteria"] = criteria_all
+    out["verdict"] = verdicts
+    out["feedback"] = feedbacks
+    out["parsed"] = parsed_all
+    out["confidence"] = [v["confidence"] for v in verdicts]
+    out["recommendation"] = [v["label"] for v in verdicts]
     out["contribs"] = [dict(zip(FEATURES, np.round(row, 2))) for row in contribs]
     out["base_value"] = round(base, 2)
+    out["matching_engine"] = engine
     out = out.sort_values(["score", "id"], ascending=[False, True], kind="stable").reset_index(drop=True)
     out["rank"] = np.arange(1, len(out) + 1)
     return out
 
 
 def verify_with_shap(job, candidates, weights=None):
-    """Optional cross-check: compare our closed-form values with shap.LinearExplainer.
-
-    Needs the `shap` package; returns the max absolute difference, or None if shap
-    is not installed.  (Our own explanations never depend on shap.)
-    """
+    """Optional cross-check against shap.LinearExplainer (needs the shap package)."""
     try:
         import shap
     except ImportError:
@@ -110,9 +169,6 @@ def verify_with_shap(job, candidates, weights=None):
 
 
 def precision_at_k(ranked, labels, target, k=10):
-    """Share of the top-k ranked candidates whose true category equals `target`.
-
-    labels: dict {candidate id: category}.
-    """
+    """Share of the top-k ranked candidates whose true category equals `target`."""
     top = ranked.head(k)["id"].tolist()
     return sum(labels.get(i) == target for i in top) / max(len(top), 1)

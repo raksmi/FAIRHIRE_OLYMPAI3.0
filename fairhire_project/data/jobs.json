@@ -1,18 +1,7 @@
 [
-  {"title": "Data Scientist", "category": "Data Science",
-   "description": "Build and evaluate machine learning models on business data. Clean data with pandas and numpy, train models with scikit-learn, apply statistics and communicate findings through data visualization. Experience with Python and SQL is essential.",
-   "required": ["python", "sql", "machine learning", "pandas", "scikit-learn", "statistics"],
-   "nice": ["nlp", "tensorflow", "data visualization", "deep learning"], "min_years": 2, "min_edu": 1},
-  {"title": "Full-Stack Web Developer", "category": "Web Development",
-   "description": "Design and build responsive web applications. Create user interfaces with HTML, CSS, JavaScript and React, and develop REST APIs with Node.js and a database such as MongoDB or SQL. Use Git for collaboration.",
-   "required": ["javascript", "html", "css", "react", "node.js", "rest api", "git"],
-   "nice": ["typescript", "mongodb", "sql", "django"], "min_years": 2, "min_edu": 1},
-  {"title": "Cybersecurity Analyst", "category": "Cybersecurity",
-   "description": "Protect systems and networks. Perform network security monitoring, vulnerability assessment and penetration testing, respond to incidents, work with SIEM tools and Linux servers, and apply cryptography and firewall best practice.",
-   "required": ["network security", "penetration testing", "linux", "siem", "incident response", "vulnerability assessment"],
-   "nice": ["cryptography", "firewalls", "wireshark", "python"], "min_years": 2, "min_edu": 1},
-  {"title": "DevOps Engineer", "category": "DevOps",
-   "description": "Automate build, test and deployment. Containerise services with Docker and Kubernetes, run infrastructure on AWS with Terraform, maintain CI/CD pipelines, script in Bash and Python, and monitor systems on Linux.",
-   "required": ["docker", "kubernetes", "aws", "ci/cd", "linux", "git"],
-   "nice": ["terraform", "bash", "monitoring", "python"], "min_years": 3, "min_edu": 1}
+  {"title":"Engineering","category":"Engineering","description":"Engineering role requiring technical problem-solving, design, analysis, testing and documentation relevant to the vacancy.","required":["engineering","problem solving","design","testing","documentation"],"nice":["CAD","project management","quality assurance"],"min_years":0,"min_edu":1},
+  {"title":"Information Technology","category":"Information Technology","description":"IT role requiring technical support, systems, networking, troubleshooting, software or data skills relevant to the vacancy.","required":["IT","troubleshooting","networking","software","problem solving"],"nice":["Python","SQL","cybersecurity","cloud"],"min_years":0,"min_edu":1},
+  {"title":"Design","category":"Design","description":"Design role requiring visual communication, creative problem-solving, prototyping and design tools relevant to the vacancy.","required":["design","prototyping","visual communication","creative","portfolio"],"nice":["Figma","Adobe","UI/UX","user research"],"min_years":0,"min_edu":1},
+  {"title":"Banking","category":"Banking","description":"Banking role requiring financial awareness, accuracy, communication, customer service and analytical skills relevant to the vacancy.","required":["finance","analysis","communication","customer service","accuracy"],"nice":["Excel","risk management","compliance","accounting"],"min_years":0,"min_edu":1},
+  {"title":"Digital Media","category":"Digital Media","description":"Digital media role requiring content creation, storytelling, social media, communication and digital campaign skills relevant to the vacancy.","required":["content creation","social media","communication","storytelling","digital marketing"],"nice":["analytics","SEO","video editing","Canva"],"min_years":0,"min_edu":1}
 ]

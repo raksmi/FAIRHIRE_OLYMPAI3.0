@@ -21,21 +21,19 @@ _GENDER_WORDS = re.compile(r"\b(?:male|female|man|woman|men|women|gentleman|lady
 _PRONOUNS = re.compile(r"\b(?:he|she|him|her|hers|his|himself|herself)\b", re.I)
 _LOCATION_LINE = re.compile(r"^\s*(?:address|location|city)\s*:.*$", re.I | re.M)
 _CITY = re.compile(r"\b(?:" + "|".join(CITIES) + r")\b")
-# "Anna University", "University of Mumbai", "IIT Madras", "BITS Pilani", "NIT Trichy"
+
 _INSTITUTION = re.compile(
     r"\b(?:(?:[A-Z][\w&'-]*\s){0,3}(?:University|College|Institute|School)(?:\s+of\s+(?:[A-Z][\w&'-]*\s?){1,3})?"
     r"|(?:IIT|NIT|IIIT|BITS)\s+[A-Z][a-z]+)")
 
-
 def anonymize(text, name=None):
     """Return `text` with identity indicators replaced by neutral tags."""
     out = text
-    # 1. Contact details FIRST - emails and URLs often contain the person's name,
-    #    and must be removed whole before name tokens are masked.
+
     out = _EMAIL.sub("[EMAIL]", out)
     out = _URL.sub("[URL]", out)
     out = _PHONE.sub("[PHONE]", out)
-    # 2. Known candidate name (each token) and a likely name on the first line.
+
     if name:
         for token in re.split(r"\s+", name.strip()):
             if len(token) > 1:
@@ -44,13 +42,13 @@ def anonymize(text, name=None):
     if lines and re.fullmatch(r"[A-Z][a-z]+(?:\s[A-Z][a-z]+){0,3}", lines[0].strip() or "x"):
         lines[0] = "[CANDIDATE]"
         out = "\n".join(lines)
-    # 2b. Explicit gender / location lines.
+
     out = _GENDER_LINE.sub("Gender: [REMOVED]", out)
     out = _LOCATION_LINE.sub("Location: [REMOVED]", out)
-    # 3. Institutions and cities (before years so "University of X, 2019" is clean).
+
     out = _INSTITUTION.sub("[INSTITUTION]", out)
     out = _CITY.sub("[LOCATION]", out)
-    # 4. Years (graduation / age proxy), titles, gendered words and pronouns.
+
     out = _YEAR.sub("[YEAR]", out)
     out = _TITLE.sub("", out)
     out = _GENDER_WORDS.sub("[GENDER]", out)

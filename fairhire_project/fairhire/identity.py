@@ -13,11 +13,9 @@ MALE_FIRST = ["Rahul", "Arjun", "Vikram", "Karthik", "Rohan", "Imran", "James", 
 SURNAMES = ["Sharma", "Iyer", "Reddy", "Khan", "Nair", "Patel", "Singh", "Das", "Menon", "Gupta",
             "Smith", "Johnson", "Rao", "Joshi", "Verma", "Kumar", "Mehta", "Bose", "Pillai", "Chopra"]
 
-# (female form, male form) of every pronoun, used by swap_pronouns().
 _PRONOUN_SWAP = {"she": "he", "he": "she", "her": "his", "his": "her", "hers": "his",
                  "him": "her", "himself": "herself", "herself": "himself"}
 _PRON_RE = re.compile(r"\b(" + "|".join(_PRONOUN_SWAP) + r")\b", re.I)
-
 
 def swap_pronouns(text):
     """Flip gendered pronouns while keeping capitalisation ('She' -> 'He')."""
@@ -26,7 +24,6 @@ def swap_pronouns(text):
         new = _PRONOUN_SWAP[word.lower()]
         return new.capitalize() if word[0].isupper() else new
     return _PRON_RE.sub(repl, text)
-
 
 def infer_gender(text, name=""):
     """Best-effort gender label ('female'/'male'/'unknown') from first name or pronouns."""
@@ -39,7 +36,6 @@ def infer_gender(text, name=""):
     mal = len(re.findall(r"\b(?:he|him|his|himself)\b", text, re.I))
     return "female" if fem > mal else "male" if mal > fem else "unknown"
 
-
 def counterpart_name(name, gender):
     """Opposite-gender counterpart of `name` (same surname, aligned first-name list)."""
     parts = name.split()
@@ -48,7 +44,7 @@ def counterpart_name(name, gender):
         new_first = MALE_FIRST[FEMALE_FIRST.index(first)]
     elif first in MALE_FIRST:
         new_first = FEMALE_FIRST[MALE_FIRST.index(first)]
-    else:  # unknown first name: deterministic pick from the opposite list
+    else:
         pool = MALE_FIRST if gender == "female" else FEMALE_FIRST
         new_first = pool[zlib.crc32(name.encode()) % len(pool)]
     return " ".join([new_first] + rest)
